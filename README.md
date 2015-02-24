@@ -2,6 +2,10 @@
 
 ## Cylon.js and the "Internet of Beers"
 
+* Don't Blink
+
+* Cylon.js & Browserify
+
 * Pressure Sensor drink monitor
 
 * iBeacon Drink delivery
