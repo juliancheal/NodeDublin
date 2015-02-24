@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Where's my beer?</title>
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet"/>
+    <meta name="viewport" content="">
+  </head>
+  <body>
+    <h1>Where's my beer?</h1>
+    <p id="beerness">??</p>
+
+    <script>
+      var es = new EventSource('https://api.spark.io/v1/events/geek-hq/?access_token=XXX');
+      es.addEventListener('open', function(e) {
+          console.log("Opened!"); },false);
+      es.addEventListener('error', function(e) {
+          console.log("Errored!"); },false);
+      es.addEventListener('geek-hq/temperature', function(e) {
+        var data = JSON.parse(e.data);
+        console.log(data);
+
+        var beerness = data.data;
+        document.getElementById("beerness").innerHTML = beerness;
+
+        document.body.className = beerness > 26? 'hawt' : (beerness < 5? 'cold' : '');
+      }, false);
+    </script>
+  </body>
+</html>
